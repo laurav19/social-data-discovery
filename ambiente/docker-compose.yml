@@ -1,0 +1,31 @@
+postgres:
+  build: docker-images/postgres
+  ports:
+    - "5432:5432"
+  volumes_from:
+    - data
+  env_file: .env
+
+data:
+  build: docker-images/data
+  volumes:
+    - /data
+
+datalake:
+  build: docker-images/datalake
+  volumes:
+    - /datalake
+
+jupyter:
+  build: docker-images/jupyter
+  hostname: jupyter
+  #command: python /home/jovyan/work/sdd-ingesta.py
+
+  links:
+    - postgres
+
+  ports:
+    - 8888:8888
+
+  volumes_from:
+    - data

@@ -1,0 +1,8 @@
+awscli
+boto
+psycopg2
+numpy
+pandas
+tweepy
+simplejson
+textblob
